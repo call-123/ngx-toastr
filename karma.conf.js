@@ -27,9 +27,9 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     customLaunchers: {
-      ChromeHeadlessCustom: {
-        base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--disable-gpu'],
+      ChromeCI: {
+        base: `${process.env['TRAVIS'] ? 'ChromeHeadless' : 'Chrome'}`,
+        flags: process.env['TRAVIS'] ? ['--no-sandbox'] : [],
       },
     },
     singleRun: false,

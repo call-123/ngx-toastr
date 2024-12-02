@@ -1,11 +1,12 @@
 import { DOCUMENT } from '@angular/common';
-import { inject, Injectable, OnDestroy } from '@angular/core';
+import { Inject, Injectable, OnDestroy } from '@angular/core';
 
 /** Container inside which all toasts will render. */
 @Injectable({ providedIn: 'root' })
 export class OverlayContainer implements OnDestroy {
-  protected _document = inject(DOCUMENT);
   protected _containerElement!: HTMLElement;
+
+  constructor(@Inject(DOCUMENT) protected _document: any) {}
 
   ngOnDestroy() {
     if (this._containerElement && this._containerElement.parentNode) {

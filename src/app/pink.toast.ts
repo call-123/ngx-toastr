@@ -31,7 +31,7 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
     }
   `],
   template: `
-  <div class="row" [style.display]="state().value === 'inactive' ? 'none' : ''">
+  <div class="row" [style.display]="state.value === 'inactive' ? 'none' : ''">
     <div class="col-9">
       <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
         {{ title }}
@@ -54,7 +54,7 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
     </div>
   </div>
   <div *ngIf="options.progressBar">
-    <div class="toast-progress" [style.width]="width() + '%'"></div>
+    <div class="toast-progress" [style.width]="width + '%'"></div>
   </div>
   `,
   animations: [
@@ -96,6 +96,14 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
 export class PinkToast extends Toast {
   // used for demo purposes
   undoString = 'undo';
+
+  // constructor is only necessary when not using AoT
+  constructor(
+    protected toastrService: ToastrService,
+    public toastPackage: ToastPackage,
+  ) {
+    super(toastrService, toastPackage);
+  }
 
   action(event: Event) {
     event.stopPropagation();

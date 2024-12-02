@@ -1,9 +1,12 @@
-import { Directive, ElementRef } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  NgModule,
+} from '@angular/core';
 
 @Directive({
   selector: '[toastContainer]',
   exportAs: 'toastContainer',
-  standalone: true
 })
 export class ToastContainerDirective {
   constructor(private el: ElementRef) { }
@@ -11,3 +14,9 @@ export class ToastContainerDirective {
     return this.el.nativeElement;
   }
 }
+
+@NgModule({
+  declarations: [ToastContainerDirective],
+  exports: [ToastContainerDirective],
+})
+export class ToastContainerModule {}
