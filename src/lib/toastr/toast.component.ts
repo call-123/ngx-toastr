@@ -107,7 +107,7 @@ export class Toast implements OnDestroy {
       this.activateToast();
     });
     this.sub1 = toastPackage.toastRef.manualClosed().subscribe(() => {
-      this.remove();
+      //this.remove();
     });
     this.sub2 = toastPackage.toastRef.timeoutReset().subscribe(() => {
       this.resetTimeout();
